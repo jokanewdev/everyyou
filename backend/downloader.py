@@ -7,7 +7,10 @@ import re
 # Em um sistema em nuvem escalável, isso seria substituído por Redis
 PROGRESS_STORE = {}
 DOWNLOAD_DIR = "downloads"
-
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+COOKIE_FILE = os.path.join(BASE_DIR, "youtube.com_cookies.txt")
+if not os.path.exists(COOKIE_FILE):
+    COOKIE_FILE = os.path.join(os.getcwd(), "youtube.com_cookies.txt")
 os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 
 def analyze_media(url: str) -> dict:
@@ -80,6 +83,8 @@ def download_task(task_id: str, url: str, format_id: str):
         'progress_hooks': [my_hook],
         'quiet': True,
         'noplaylist': True,
+        'cookiefile': COOKIE_FILE,
+        'outtmpl': f'{DOWNLOAD_DIR}/%(title)s.%(ext)s',
         'merge_output_format': 'mp4' if 'video' in format_id else None,
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
