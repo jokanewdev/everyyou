@@ -7,7 +7,10 @@ import uuid
 import os
 
 from backend.downloader import analyze_media, download_task, PROGRESS_STORE
-
+# No topo do seu downloader.py ou main.py
+DOWNLOAD_DIR = "/tmp/downloads" 
+if not os.path.exists(DOWNLOAD_DIR):
+    os.makedirs(DOWNLOAD_DIR)
 app = FastAPI(title="EveryYou API")
 
 app.add_middleware(
