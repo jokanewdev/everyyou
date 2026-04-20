@@ -1,0 +1,108 @@
+:root {
+    --bg-color: #402B19;    /* Fundo escuro */
+    --card-bg: #735736;     /* Painéis */
+    --accent: #A69981;      /* Destaques e Botões */
+    --text-main: #F4F1ED;   /* Texto Claro */
+    --text-muted: #D1C7BA;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px 15px;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 500px; /* Mantém a proporção de app de celular mesmo no desktop */
+}
+
+.app-header h1 {
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: -0.5px;
+}
+
+.app-header p {
+    color: var(--text-muted);
+}
+
+.card {
+    background-color: var(--card-bg);
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.input-group-text, .form-control, .form-select {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(166, 153, 129, 0.3);
+    color: var(--text-main);
+    border-radius: 12px;
+}
+
+.input-group-text { border-right: none; color: var(--accent); }
+.form-control { border-left: none; }
+.form-control:focus, .form-select:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent);
+    color: var(--text-main);
+    box-shadow: none;
+}
+.form-control::placeholder { color: rgba(209, 199, 186, 0.5); }
+
+/* Customizando o select para o modo escuro */
+.form-select option { background-color: var(--card-bg); color: var(--text-main); }
+
+.btn-primary {
+    background-color: var(--accent);
+    color: var(--bg-color);
+    border: none;
+    border-radius: 12px;
+    padding: 12px;
+    transition: all 0.2s;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+    background-color: #b8ac97 !important; /* Versão mais clara do accent */
+    color: var(--bg-color) !important;
+    transform: translateY(-2px);
+}
+
+.media-card { position: relative; }
+
+.media-card img {
+    height: 220px;
+    object-fit: cover;
+    border-bottom: 3px solid var(--accent);
+}
+
+.platform-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(64, 43, 25, 0.8);
+    backdrop-filter: blur(5px);
+    color: var(--accent);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.text-muted { color: var(--text-muted) !important; }
+.spinner-border { color: var(--accent); }
+.progress-bar { background-color: var(--accent); }
+.progress {
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 10px;
+}
