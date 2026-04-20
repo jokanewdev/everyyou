@@ -78,8 +78,10 @@ def download_task(task_id: str, url: str, format_id: str):
     ydl_opts = {
         'format': format_id,
         'cookiefile': COOKIE_FILE,
+        'user_agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
         'outtmpl': f'{DOWNLOAD_DIR}/%(title)s.%(ext)s',
         'progress_hooks': [my_hook],
+        'source_address': '0.0.0.0',
         'quiet': True,
         'noplaylist': True,
         'merge_output_format': 'mp4' if 'video' in format_id else None,
