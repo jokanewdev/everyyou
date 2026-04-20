@@ -3,13 +3,10 @@ from backend.downloader import analyze_media, download_task, PROGRESS_STORE
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
-from backend.main import DOWNLOAD_DIR
 from pydantic import BaseModel
 import uuid
 import os
 
-from backend.downloader import analyze_media, download_task, PROGRESS_STORE
-# No topo do seu downloader.py ou main.py
 DOWNLOAD_DIR = "/tmp/downloads" 
 if not os.path.exists(DOWNLOAD_DIR):
     os.makedirs(DOWNLOAD_DIR)
