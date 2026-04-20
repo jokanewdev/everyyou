@@ -75,6 +75,7 @@ def download_task(task_id: str, url: str, format_id: str):
 
     ydl_opts = {
         'format': format_id,
+        'cookiefile': 'backend/youtube.com_cookies.txt',
         'outtmpl': output_template,
         'progress_hooks': [my_hook],
         'quiet': True,
