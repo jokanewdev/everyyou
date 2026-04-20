@@ -77,3 +77,8 @@ async def get_file(task_id: str, background_tasks: BackgroundTasks):
 
 # Monta o frontend estático para a raiz
 app.mount("/", StaticFiles(directory="frontend", html=True), name="frontend")
+if __name__ == "__main__":
+    import uvicorn
+    import os
+    port = int(os.environ.get("PORT", 7860))
+    uvicorn.run(app, host="0.0.0.0", port=port)
