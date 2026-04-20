@@ -78,6 +78,7 @@ def download_task(task_id: str, url: str, format_id: str):
     ydl_opts = {
         'format': format_id,
         'cookiefile': COOKIE_FILE,
+        'extractor_args': {'youtube': {'player_client': ['android', 'web']}},
         'user_agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
         'source_address': '0.0.0.0',
         'outtmpl': f'{DOWNLOAD_DIR}/%(title)s.%(ext)s',
