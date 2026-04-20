@@ -6,7 +6,7 @@ import re
 # Dicionário em memória para armazenar o status dos downloads
 # Em um sistema em nuvem escalável, isso seria substituído por Redis
 PROGRESS_STORE = {}
-DOWNLOAD_DIR = "/tmp/downloads"
+DOWNLOAD_DIR = "downloads"
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 COOKIE_FILE = os.path.join(BASE_DIR, "youtube.com_cookies.txt")
 if not os.path.exists(COOKIE_FILE):
