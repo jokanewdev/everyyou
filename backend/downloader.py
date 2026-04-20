@@ -6,7 +6,7 @@ import re
 # Dicionário em memória para armazenar o status dos downloads
 # Em um sistema em nuvem escalável, isso seria substituído por Redis
 PROGRESS_STORE = {}
-DOWNLOAD_DIR = "downloads"
+DOWNLOAD_DIR = "/tmp/downloads"
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 COOKIE_FILE = os.path.join(BASE_DIR, "youtube.com_cookies.txt")
 if not os.path.exists(COOKIE_FILE):
@@ -60,7 +60,6 @@ def clean_ansi(text):
 
 def download_task(task_id: str, url: str, format_id: str):
     output_template = f"{DOWNLOAD_DIR}/{task_id}_%(title)s.%(ext)s"
-    
     def my_hook(d):
         if d['status'] == 'downloading':
             try:
@@ -78,14 +77,13 @@ def download_task(task_id: str, url: str, format_id: str):
 
     ydl_opts = {
         'format': format_id,
-        'cookiefile': 'backend/youtube.com_cookies.txt',
-        'outtmpl': output_template,
+        'cookiefile': COOKIE_FILE,
+        'outtmpl': f'{DOWNLOAD_DIR}/%(title)s.%(ext)s',
         'progress_hooks': [my_hook],
         'quiet': True,
         'noplaylist': True,
-        'cookiefile': COOKIE_FILE,
-        'outtmpl': f'{DOWNLOAD_DIR}/%(title)s.%(ext)s',
         'merge_output_format': 'mp4' if 'video' in format_id else None,
+        'outtmpl': output_template,
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'mp3',
